@@ -104,6 +104,8 @@ The below table shows the summary of the dataset. The dataset includes 10 subset
 
 ## Data
 
+For more information on how to use the dataset, you can refer to the **demo.py**.
+
 #### GNSS Data
 
 GNSS data is collected by U-blox F9P. The observation file is stored in **data/GNSS/\*/COM\*.obs**. Please notice that we collect data from four constellations including GPS, Beidou, Galileo and BLONASS, but only GPS and Beidou satellites are labeld.
