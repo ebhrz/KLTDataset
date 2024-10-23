@@ -1,0 +1,20 @@
+{
+    "bag": "data/ROS/20231116/KLT2_169.bag",
+    "gt": "label/1116_KLT2_169/gt.csv",
+    "files": [
+        "data/GNSS/20231116/COM18___9600_231116_082929.obs",
+        "data/GNSS/20231116/sta/hksc320*"
+    ],
+    "vrtk": true,
+    "save": "result/1116_KLT2_169",
+    "margin": [
+        106,
+        342
+    ],
+    "rotate": 180,
+    "train_model": "",
+    "predict_model": "",
+    "start_utc": 1700128216.7660995,
+    "end_utc": 1700128385.8872058,
+    "label": "label/1116_KLT2_169/nlos.pkl"
+}

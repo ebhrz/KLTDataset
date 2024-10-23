@@ -1,0 +1,20 @@
+{
+    "bag": "data/ROS/20210610/KLT2_209.bag",
+    "gt": "label/0610_KLT2_209/gt.csv",
+    "files": [
+        "data/GNSS/20210610/COM38_210610_025603.obs",
+        "data/GNSS/20210610/sta/hksc161d.21*"
+    ],
+    "vrtk": true,
+    "save": "result/0610_KLT2_209",
+    "margin": [
+        115,
+        336
+    ],
+    "rotate": 0,
+    "train_model": "",
+    "predict_model": "",
+    "start_utc": 1623296899.3314576,
+    "end_utc": 1623297108.1,
+    "label": "label/0610_KLT2_209/nlos.pkl"
+}
