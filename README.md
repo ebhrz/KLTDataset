@@ -145,6 +145,38 @@ for label in labels:
       print(f"satellite {satid}: the coordinate of satellite the projection on the flatten fisheye image ({part[1]/3.46875},{part[2]/3.46875})")
 ```
 
+#### Image Data
+
+Also in the **label folder**, there is "**image.zip**" file. There are three kinds of images in the zip file, including ***original fisheye image with satellite projection***,  ***flatten fisheye image with satellite projection***, and the ***sky segmentation of the flatten fisheye image***.
+There are examples below:
+
+![fisheye](image/fisheye.jpg)![panorama](image/panorama.jpg)
+![segment](image/segment.jpg)
+
+#### ROS Bag
+For data in 2021/06/10, the camera topics are **/zed2/camera/left/image_raw** and **/zed2/camera/right/image_raw**. For data in 2023/11/09 and 2023/11/16, the camera topic is **/pointgrey/left_camera/image_color/compressed**. For all the bag files, the fisheye camera topic is **/fisheye/image_color/compressed**, the Velodyne 32 HDL topic is **/velodyne_points**. Two 16-scan LiDARs' topic are **/left/lslidar_point_cloud** and **/right/velodyne_points**. The IMU data is at **/imu/data**. For the extrinsic parameters, please refer to [UrbanNav Dataset](https://github.com/IPNL-POLYU/UrbanNavDataset)
+
+## Trajectory
+KLT1-203
+<image width="50%" src = "image/path/0610_KLT1_203.gif"></image>
+KLT2-209
+<image width="50%" src = "image/path/0610_KLT2_209.gif"></image>
+KLT3-404
+<image width="50%" src = "image/path/0610_KLT3_404.gif"></image>
+KLT1-421
+<image width="50%" src = "image/path/1109_KLT1_421.gif"></image>
+KLT2-294
+<image width="50%" src = "image/path/1109_KLT2_294.gif"></image>
+KLT2-301
+<image width="50%" src = "image/path/1109_KLT2_301.gif"></image>
+KLT3-666
+<image width="50%" src = "image/path/1109_KLT3_666.gif"></image>
+KLT1-184
+<image width="50%" src = "image/path/1116_KLT1_184.gif"></image>
+KLT2-169
+<image width="50%" src = "image/path/1116_KLT2_169.gif"></image>
+KLT3-649
+<image width="50%" src = "image/path/1116_KLT3_649.gif"></image>
 ## Reference
 [^1]: A. Geiger, P. Lenz, and R. Urtasun, “Are we ready for autonomous driving? The KITTI vision benchmark suite,” in *2012 IEEE Conference on Computer Vision and Pattern Recognition*, IEEE, 2012, pp. 3354–3361.
 [^2]: X. Huang, X. Cheng, Q. Geng, B. Cao, D. Zhou, P. Wang, Y. Lin, and R. Yang, “The ApolloScape dataset for autonomous driving,” in *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops*, 2018, pp. 954–960.
