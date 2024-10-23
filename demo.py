@@ -131,7 +131,8 @@ for o,l,gtp in zip(obss,labels,gt):
 sols_enus = np.array(sols_enu)
 nlos_sols_enus = np.array(nlos_sols_enu)
 gts_enus = np.array(gts_enu)
-print("error of sols:",np.linalg.norm(sols_enus-gts_enus,axis=1).mean())
-print("error of nlos sols:",np.linalg.norm(nlos_sols_enus-gts_enus,axis=1).mean())
-
+print("2D error of sols:",np.linalg.norm((sols_enus-gts_enus)[:,:2],axis=1).mean())
+print("2D error of nlos sols:",np.linalg.norm((nlos_sols_enus-gts_enus)[:,:2],axis=1).mean())
+print("3D error of sols:",np.linalg.norm(sols_enus-gts_enus,axis=1).mean())
+print("3D error of nlos sols:",np.linalg.norm(nlos_sols_enus-gts_enus,axis=1).mean())
 plt.show()

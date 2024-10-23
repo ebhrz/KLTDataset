@@ -713,14 +713,14 @@ def H_matrix_prl_nlos(satpos,rp,dts,time,nav,sats,nlos,exclude = []):
         vions.append(vion.ptr)
         vtrps.append(vtrp.ptr)
         prl.satno2id(sats[i],sysname)
-        try:
-            los = nlos[sysname.ptr]
-        except:
+        if sysname.ptr in nlos:
             los = 0
+        else:
+            los = 1
         if los:
             vel = 0.0001
         else:
-            vel = varerr(5*prl.D2R,sysname.ptr[0])
+            vel = varerr(1*prl.D2R,sysname.ptr[0])
         vels.append(vel)
         if 'G' in sysname.ptr:
             Ht.append([-(sp[0]-rp[0])/r,-(sp[1]-rp[1])/r,-(sp[2]-rp[2])/r,1,0,0,0])
