@@ -164,35 +164,26 @@ There are examples below:
 For data in 2021/06/10, the camera topics are **/zed2/camera/left/image_raw** and **/zed2/camera/right/image_raw**. For data in 2023/11/09 and 2023/11/16, the camera topic is **/pointgrey/left_camera/image_color/compressed**. For all the bag files, the fisheye camera topic is **/fisheye/image_color/compressed**, the Velodyne 32 HDL topic is **/velodyne_points**. Two 16-scan LiDARs' topic are **/left/lslidar_point_cloud** and **/right/velodyne_points**. The IMU data is at **/imu/data**. For the extrinsic parameters, please refer to [UrbanNav Dataset](https://github.com/IPNL-POLYU/UrbanNavDataset)
 
 ## Trajectory
-#### KLT1-203
-<image  src = "image/path/0610_KLT1_203.gif"></image>
+| KLT1-203 | KLT2-209 |
+|:--------:|:--------:|
+| <image src="image/path/0610_KLT1_203.gif"></image> | <image src="image/path/0610_KLT2_209.gif"></image> |
 
-#### KLT2-209
-<image  src = "image/path/0610_KLT2_209.gif"></image>
+| KLT3-404 | KLT1-421 |
+|:--------:|:--------:|
+| <image src="image/path/0610_KLT3_404.gif"></image> | <image src="image/path/1109_KLT1_421.gif"></image> |
 
-#### KLT3-404
-<image  src = "image/path/0610_KLT3_404.gif"></image>
+| KLT2-294 | KLT2-301 |
+|:--------:|:--------:|
+| <image src="image/path/1109_KLT2_294.gif"></image> | <image src="image/path/1109_KLT2_301.gif"></image> |
 
-#### KLT1-421
-<image  src = "image/path/1109_KLT1_421.gif"></image>
+| KLT3-666 | KLT1-184 |
+|:--------:|:--------:|
+| <image src="image/path/1109_KLT3_666.gif"></image> | <image src="image/path/1116_KLT1_184.gif"></image> |
 
-#### KLT2-294
-<image  src = "image/path/1109_KLT2_294.gif"></image>
+| KLT2-169 | KLT3-649 |
+|:--------:|:--------:|
+| <image src="image/path/1116_KLT2_169.gif"></image> | <image src="image/path/1116_KLT3_649.gif"></image> |
 
-#### KLT2-301
-<image  src = "image/path/1109_KLT2_301.gif"></image>
-
-#### KLT3-666
-<image  src = "image/path/1109_KLT3_666.gif"></image>
-
-#### KLT1-184
-<image  src = "image/path/1116_KLT1_184.gif"></image>
-
-#### KLT2-169
-<image  src = "image/path/1116_KLT2_169.gif"></image>
-
-#### KLT3-649
-<image  src = "image/path/1116_KLT3_649.gif"></image>
 ## Reference
 [^1]: A. Geiger, P. Lenz, and R. Urtasun, “Are we ready for autonomous driving? The KITTI vision benchmark suite,” in *2012 IEEE Conference on Computer Vision and Pattern Recognition*, IEEE, 2012, pp. 3354–3361.
 [^2]: X. Huang, X. Cheng, Q. Geng, B. Cao, D. Zhou, P. Wang, Y. Lin, and R. Yang, “The ApolloScape dataset for autonomous driving,” in *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops*, 2018, pp. 954–960.
