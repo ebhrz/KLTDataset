@@ -196,6 +196,10 @@ For data in 2021/06/10, the camera topics are **/zed2/camera/left/image_raw** an
 |:--------:|:--------:|
 | <image src="image/path/1116_KLT2_169.gif"></image> | <image src="image/path/1116_KLT3_649.gif"></image> |
 
+## Creators
+
+Dr. Li-Ta Hsu, Dr. Weisong Wen, Runzhi Hu, Feng Huang, Yihan Zhong, Xiao Xia, and Ivan Ng were instrumental in creating this dataset.
+
 ## Reference
 [^1]: A. Geiger, P. Lenz, and R. Urtasun, “Are we ready for autonomous driving? The KITTI vision benchmark suite,” in *2012 IEEE Conference on Computer Vision and Pattern Recognition*, IEEE, 2012, pp. 3354–3361.
 [^2]: X. Huang, X. Cheng, Q. Geng, B. Cao, D. Zhou, P. Wang, Y. Lin, and R. Yang, “The ApolloScape dataset for autonomous driving,” in *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition Workshops*, 2018, pp. 954–960.

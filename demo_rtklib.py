@@ -123,6 +123,7 @@ prcopt.rb[1] = sta.pos[1]
 prcopt.rb[2] = sta.pos[2]
 prcopt.modear = 2
 
+index = 0
 
 for o,o_rtk,l,gtp in zip(obss,obss_rtk,labels,gt):
     rtksol = get_rtklib_pnt(o_rtk,nav,prcopt,"DGNSS")
@@ -150,7 +151,9 @@ for o,o_rtk,l,gtp in zip(obss,obss_rtk,labels,gt):
         elif sname in nlos:
             image = cv2.circle(image,(x,y),5,(255,0,0),-1)
     update_plot(spp_sol_enu,rtk_sol_enu,gt_enu,image)
-    input()
+    if index == 0:
+        index+=1
+        input()
 
 spp_sols_enus = np.array(spp_sols_enus)
 rtk_sols_enus = np.array(rtk_sols_enus)
