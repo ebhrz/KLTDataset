@@ -1,4 +1,4 @@
-# KLT_Dataset
+# KLTDataset
 
 The KLT dataset is a light urban scenario dataset containing **GNSS raw measurements** collected using a U-blox F9P receiver, **ground truth** provided by the SPAN-CPT system, and **LOS/NLOS labels** for ***GPS*** and ***Beidou*** satellites. Additional data, such as IMU, LiDAR, and camera recordings, are also included in the ROS bag file.
 
