@@ -8,11 +8,11 @@ We also provide a start script and configuration files to enable researchers to 
 
 1. Clone the repository 
    ```bash
-   git clone https://github.com/ebhrz/KLTDataSet
+   git clone https://github.com/ebhrz/KLTDataset
    ```
 2. Install the dependencies
    ```bash
-   cd KLT_Dataset
+   cd KLTDataset
    pip install -r requirements.txt
    ```
 3. Download the data from [Dropbox](https://www.dropbox.com/scl/fo/gz7olnsojd3qyjjjbzoso/AIb0qbtm4OSRYVgttH5l8y0?rlkey=2d2fext0lekvsp7t1g2qr97rq&st=1vphqymn&dl=0), and extract **data** and **label** to the repository folder. The folder tree should looks like:
