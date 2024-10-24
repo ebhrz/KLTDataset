@@ -99,7 +99,7 @@ Below figure shows our platform. For more details, please refer to our [UrbanNav
 
 
 ## Summary Of The Dataset
-The below table shows the summary of the dataset. The dataset includes 10 subsets listed in the table, which vary in time, satellite distribution and illumination. Please noticed that we only labeled ***GPS*** and ***Beidou*** satellites.
+The below table shows the summary of the dataset. The dataset includes 10 subsets listed in the table, which vary in time, satellite distribution and illumination. Please noticed that we only labeled ***GPS*** and ***Beidou*** satellites. And because the illumination condition is very low in KLT3-649, so the label is **not reliable**.
 | Dataset No. | Date       | Time         | Area | Illumination | Epoch | Samples | LOS/NLOS   |
 |-------------|------------|--------------|------|--------------|-------|---------|------------|
 | KLT1-203    | 2021.06.10 | 11:35-11:38  | KLT1 | High         | 203   | 3295    | 1862/1433  |
