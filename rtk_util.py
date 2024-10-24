@@ -1,4 +1,5 @@
 import pyrtklib as prl
+#from build import pyrtklib as prl
 #import pyrtklib_debug.build.pyrtklib_debug as prl
 #import pyrtklib_debug.build.pyrtklib as prl
 import numpy as np
@@ -126,7 +127,7 @@ def nextobsf(obs,i):
     n = 0
     while i+n < obs.n:
         tt = prl.timediff(obs.data[i+n].time,obs.data[i].time)
-        if tt<0 or tt > 0.05:
+        if abs(tt) > 0.05:
             break
         n+=1
     return n
@@ -180,8 +181,12 @@ def split_obs(obs,ref=False):
                     if obs.data[i+j+rcv1].rcv == 2:
                         tmp_obs.data[rcv1+rcv2] = obs.data[i+rcv1+j]
                         rcv2+=1
-        tmp_obs.n = m
-        tmp_obs.nmax = m
+        if rcv2 == 0:
+            tmp_obs.n = rcv1
+            tmp_obs.nmax = rcv1
+        else:
+            tmp_obs.n = m
+            tmp_obs.nmax = m
         i+=m
         obss.append(tmp_obs)
         m = nextobsf(obs,i)

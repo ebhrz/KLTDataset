@@ -60,6 +60,9 @@ obss = split_obs(obs)
 obss = filter_obs(obss, config['start_utc'], config['end_utc'])
 assert len(obss) == len(labels) and len(obss) == len(gt), f"Length mismatch: {len(obss)} vs {len(labels)} vs {len(gt)}, the config file and the label file may not match"
 
+obss_rtk = split_obs(obs,True)
+obss_rtk = filter_obs(obss_rtk, config['start_utc'], config['end_utc'])
+
 
 
 #visualize
@@ -74,24 +77,24 @@ ax.set_ylim(-500, 500)
 
 ax.set_aspect('equal', adjustable='datalim')
 
-sol_points = ax.scatter([], [], c='red', label='SPP Solution')    # WLS blue
-nlos_sol_points = ax.scatter([], [], c='blue', label='NLOS Down-weight Solution')  # NLOS-down-weight red
+spp_sol_points = ax.scatter([], [], c='red', label='RTKLIB SPP Solution')   
+rtk_sol_points = ax.scatter([], [], c='blue', label='RTKLIB RTK Solution') 
 gt_points = ax.scatter([], [], c='green', label='Ground Truth')  # Ground truth green
 
 ax.legend()
 
 
-sol_positions = []
-nlos_sol_positions = []
+spp_sol_positions = []
+rtk_sol_positions = []
 gt_positions = []
 
-def update_plot(sol_enu, nlos_sol_enu,gt_enu,img):
-    sol_positions.append(sol_enu[:2]) 
-    nlos_sol_positions.append(nlos_sol_enu[:2])
+def update_plot(spp_sol_enu, rtk_sol_enu,gt_enu,img):
+    spp_sol_positions.append(spp_sol_enu[:2]) 
+    rtk_sol_positions.append(rtk_sol_enu[:2])
     gt_positions.append(gt_enu[:2])
 
-    sol_points.set_offsets(sol_positions)
-    nlos_sol_points.set_offsets(nlos_sol_positions)
+    spp_sol_points.set_offsets(spp_sol_positions)
+    rtk_sol_points.set_offsets(rtk_sol_positions)
     gt_points.set_offsets(gt_positions)
 
     ax_img.clear()
@@ -101,22 +104,41 @@ def update_plot(sol_enu, nlos_sol_enu,gt_enu,img):
     plt.draw()
     plt.pause(0.05)
 
-sols_enu = []
-nlos_sols_enu = []
+rtk_sols_enus = []
+spp_sols_enus = []
 gts_enu = []
 
-for o,l,gtp in zip(obss,labels,gt):
+prcopt = prl.prcopt_default
+prcopt.mode = prl.PMODE_KINEMA
+prcopt.navsys = prl.SYS_CMP|prl.SYS_GPS
+prcopt.soltype = 0
+prcopt.elmin = 0#15.0*prl.D2R
+prcopt.tidecorr = 0
+prcopt.posopt[4] = 0
+prcopt.tropopt = prl.TROPOPT_SAAS
+prcopt.ionoopt = prl.IONOOPT_BRDC
+prcopt.sateph = prl.EPHOPT_BRDC
+prcopt.rb[0] = sta.pos[0]
+prcopt.rb[1] = sta.pos[1]
+prcopt.rb[2] = sta.pos[2]
+prcopt.modear = 2
+
+
+for o,o_rtk,l,gtp in zip(obss,obss_rtk,labels,gt):
+    rtksol = get_rtklib_pnt(o_rtk,nav,prcopt,"DGNSS")
+    sppsol = get_rtklib_pnt(o,nav,prcopt,"SPP")
     sats = satno2name(l[1])
     los = satno2name(l[2])
     nlos = set(sats)-set(los)
-    sol = get_wls_pnt_pos(o,nav,SYS=['G','C'])
-    nlos_sol = get_nlos_wls_pnt_pos(o,nav,nlos=nlos,SYS=['G','C'])
-    sol_enu = p3d.ecef2enu(sol['pos'][0],sol['pos'][1],sol['pos'][2],*center_pos)
-    nlos_sol_enu = p3d.ecef2enu(nlos_sol['pos'][0],nlos_sol['pos'][1],nlos_sol['pos'][2],*center_pos)
+    rtk_sol = {'pos':list(rtksol[0].rr)}
+    spp_sol = {'pos':list(sppsol[0].rr)}
+    rtk_sol_enu = p3d.ecef2enu(rtk_sol['pos'][0],rtk_sol['pos'][1],rtk_sol['pos'][2],*center_pos)
+    spp_sol_enu = p3d.ecef2enu(spp_sol['pos'][0],spp_sol['pos'][1],spp_sol['pos'][2],*center_pos)
+
     gt_enu = p3d.geodetic2enu(gtp[1],gtp[2],gtp[3],*center_pos)
     
-    sols_enu.append(sol_enu)
-    nlos_sols_enu.append(nlos_sol_enu)
+    spp_sols_enus.append(spp_sol_enu)
+    rtk_sols_enus.append(rtk_sol_enu)
     gts_enu.append(gt_enu)
     image = l[3][:,:,::-1].copy()
     for s in l[4]:
@@ -127,13 +149,14 @@ for o,l,gtp in zip(obss,labels,gt):
             image = cv2.circle(image,(x,y),5,(0,255,0),-1)
         elif sname in nlos:
             image = cv2.circle(image,(x,y),5,(255,0,0),-1)
-    update_plot(sol_enu,nlos_sol_enu,gt_enu,image)
+    update_plot(spp_sol_enu,rtk_sol_enu,gt_enu,image)
+    input()
 
-sols_enus = np.array(sols_enu)
-nlos_sols_enus = np.array(nlos_sols_enu)
+spp_sols_enus = np.array(spp_sols_enus)
+rtk_sols_enus = np.array(rtk_sols_enus)
 gts_enus = np.array(gts_enu)
-print("2D error of sols:",np.linalg.norm((sols_enus-gts_enus)[:,:2],axis=1).mean())
-print("2D error of nlos sols:",np.linalg.norm((nlos_sols_enus-gts_enus)[:,:2],axis=1).mean())
-print("3D error of sols:",np.linalg.norm(sols_enus-gts_enus,axis=1).mean())
-print("3D error of nlos sols:",np.linalg.norm(nlos_sols_enus-gts_enus,axis=1).mean())
+print("2D error of RTKLIB SPP:",np.linalg.norm((spp_sols_enus-gts_enus)[:,:2],axis=1).mean())
+print("2D error of RTKLIB RTK:",np.linalg.norm((rtk_sols_enus-gts_enus)[:,:2],axis=1).mean())
+print("3D error of RTKLIB SPP:",np.linalg.norm(spp_sols_enus-gts_enus,axis=1).mean())
+print("3D error of RTKLIB RTK:",np.linalg.norm(rtk_sols_enus-gts_enus,axis=1).mean())
 plt.show()

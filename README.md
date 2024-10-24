@@ -43,10 +43,15 @@ We also provide a start script and configuration files to enable researchers to 
    ```
    If you don't use the ROS data, you can only download the **label** and **data/GNSS** folder, because the bag file is huge.
 4. Now, run the demostration.
-   ```
+   ```bash
    python demo.py config/0610_klt1_203.json
    ```
-   You can see the figure.
+   or
+   ```bash
+   python demo_rtklib.py config/0610_klt1_203.json
+   ```
+   The first script will utilize my SPP implementation for positioning. The second script will employ both **pntpos** and **rtkpos** from **RTKLIB** for positioning purposes.
+   Then you can see the figure.
    ![demo](image/path/0610_KLT1_203.gif)
 
 Now start to explore the dataset via the demo python script! If you find our dataset useful, we would greatly appreciate it if you could cite our work:
@@ -79,6 +84,13 @@ In conclusion, the absence of a dataset that offers both raw GNSS measurements a
 | Mytuc[^7]           | Urban        | ✅            | ✅           | ❌   | ❌    | ❌             | ✅         |
 | KLT (Proposed)      | Urban        | ✅            | ✅           | ✅   | ✅    | ✅             | ✅         |
 
+The performance of our ***automated labeling technique*** is shown in below table:
+
+| Dataset   | T/F            | NLOS(P)/LOS(N)     | Accuracy  | Precision | Recall   |
+|-----------|----------------|--------------------|-----------|-----------|----------|
+| **KLT1-203**  | T<br>F         | 1408/1859<br>13/5  | 99.45%    | 99.09%    | 99.65%   |
+| **KLT2-209**  | T<br>F         | 1706/1747<br>15/6  | 99.37%    | 99.12%    | 99.66%   |
+| **KLT3-404**  | T<br>F         | 2262/3909<br>18/9  | 99.53%    | 99.23%    | 99.59%   |
 
 ## Collection Platform
 

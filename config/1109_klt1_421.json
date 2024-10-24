@@ -14,7 +14,7 @@
     "rotate": 180,
     "train_model": "",
     "predict_model": "",
-    "start_utc": 1699520741.544799,
-    "end_utc": 1699521162.8440804,
+    "start_utc": 1699520742.0,
+    "end_utc": 1699521163.0,
     "label": "label/1109_KLT1_421/nlos.pkl"
 }
