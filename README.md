@@ -128,7 +128,7 @@ We are sorry that we can not directly provide the reference station data due to 
 
 #### Ground Truth
 
-Ground truth is stored in **label/\*/gt.csv**. The first column is the timestamp(**in GPS time!!! convert to UTC lease add the leap seconds 18**), and the rest are the LLH coordinate.
+Ground truth is stored in **label/\*/gt.csv**. The first column is the timestamp(**in GPS time!!! convert to UTC need to add the leap seconds 18**), and the rest are the LLH coordinate.
 
 #### Label Data
 
