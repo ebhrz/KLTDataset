@@ -6,6 +6,7 @@ import pickle
 import pymap3d as p3d
 import matplotlib.pyplot as plt
 import cv2
+import os
 
 center_pos = [22.33051516,114.18075434,0]
 
@@ -52,8 +53,13 @@ obs = prl.obs_t()
 nav = prl.nav_t()
 sta = prl.sta_t()
 
-prl.readrnx(config['files'][0],1,"",obs,nav,sta)
-prl.readrnx(config['files'][1],2,"",obs,nav,sta)
+if os.name == 'nt':
+    prl.readrnx(config['files'][0].replace("/","\\"),1,"",obs,nav,sta)
+    prl.readrnx(config['files'][1].replace("/","\\"),2,"",obs,nav,sta)
+else:
+    prl.readrnx(config['files'][0],1,"",obs,nav,sta)
+    prl.readrnx(config['files'][1],2,"",obs,nav,sta)
+
 
 prl.sortobs(obs)
 obss = split_obs(obs)

@@ -4,6 +4,11 @@ The KLT dataset is a light urban scenario dataset containing **GNSS raw measurem
 
 We also provide a start script and configuration files to enable researchers to get started with the dataset quickly and efficiently.
 
+## News
+
+### 2025.01.03
+Fix the bug "can't read data when running on Windows". Now the program will check the system and use the correct path seperator.
+
 ## Quick Start
 
 1. Clone the repository 
